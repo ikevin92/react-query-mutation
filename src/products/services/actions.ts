@@ -31,3 +31,22 @@ export const getProduct = async (id: number): Promise<Product> => {
 
   return data
 }
+
+export interface ProductLike {
+  id?: number
+  title: string
+  price: number
+  category: string
+  description: string
+  image: string
+}
+
+export const createProduct = async (
+  product: ProductLike
+): Promise<ProductLike> => {
+  await sleep(2)
+
+  const { data } = await productsApi.post<ProductLike>('/products', product)
+
+  return data
+}
